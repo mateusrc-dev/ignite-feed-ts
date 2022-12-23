@@ -3,7 +3,12 @@ import { useState } from "react";
 import { Avatar } from "./Avatar";
 import styles from "./Comment.module.css";
 
-export function Comment({ content, onDeleteComment }) {
+interface CommentProps {
+  content: string;
+  onDeleteComment: (comment: string) => void;
+}
+
+export function Comment({ content, onDeleteComment }: CommentProps) {
   const [likeCount, setLikeCount] = useState(0);
   function handleDeleteComment() {
     onDeleteComment(content); //vamos chamar a função que foi enviada como propriedade e colocar como argumento o conteúdo do comentário que está sendo enviado para esse componente também como propriedade
@@ -18,7 +23,7 @@ export function Comment({ content, onDeleteComment }) {
   return (
     //quando mandamos como valor de uma propriedade um boolean, temos que mandar entre chaves
     <div className={styles.comment}>
-      <Avatar hasBorder={false} src="https://github.com/mateusrc-dev.png" />
+      <Avatar hasBorder={false} src="https://github.com/mateusrc-dev.png" alt="" />
       <div className={styles.commentBox}>
         <div className={styles.commentContent}>
           <header>

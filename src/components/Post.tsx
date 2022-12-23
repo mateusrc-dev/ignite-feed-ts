@@ -3,9 +3,26 @@ import { format, formatDistanceToNow } from "date-fns"; //importando função qu
 import ptBR from "date-fns/locale/pt-BR"; //importando o idioma para usar na data
 import { Comment } from "./Comment";
 import { Avatar } from "./Avatar";
-import { useState } from "react";
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from "react";
 
-export function Post({ author, publishedAt, content }) {
+interface Author { //vamos definir os dados e o tipo de dado que Author vai receber
+  avatarUrl: string;
+  name: string;
+  role: string;
+}
+
+interface Content {
+  type: string;
+  content: string;
+}
+
+interface PostProps { //vamos definir quais dados e tipos de dados tem dentro do objeto com as propriedades que nosso componente recebe - não podemos definir a tipagem de um dado dentro do objeto, precisamos definir a tipagem do objeto como um todo
+  author: Author;
+  publishedAt: Date;
+  content: Content[];
+}
+
+export function Post({ author, publishedAt, content }: PostProps) {
   //vamos desestruturar - pescar de 'props' as propriedades que foram passadas para esse component
   const [comments, setComments] = useState(["Post muito massa, hein?!"]); //como um useState retorna um vetor, podemos desestruturar esse vetor - a função 'setComments' além de alterar o valor de 'comments' avisa para o react que o estado mudou
   const [newCommentText, setNewCommentText] = useState(""); //vamos armazenar o texto digitado no input, por isso o estado inicial é um string vazia
@@ -20,7 +37,7 @@ export function Post({ author, publishedAt, content }) {
     addSuffix: true,
   }); //essa função faz o cálculo da distância do dia atual em relação a data que está na variável do primeiro parâmetro - colocamos dentro do object o idioma e o addSuffix para aparecer 'há' na frente...
 
-  function handleCreateNewComment() {
+  function handleCreateNewComment(event: FormEvent) {
     event.preventDefault(); //para o comportamento padrão não ocorrer (redirecionar a página)
     //const newCommentText = event.target.comment.value //pegando o valor que está no textarea //target pega o elemento de onde vem o evento 'form' - comment é o nome da textarea (comment pega o elemento 'textarea') - programação imperativa
     setComments((prevState) => [...prevState, newCommentText]); //aqui estamos usando a imutabilidade (está sendo passado um novo valor em vez do valor ser alterado)
@@ -28,16 +45,16 @@ export function Post({ author, publishedAt, content }) {
     setNewCommentText(""); //programação declarativa
   }
 
-  function handleNewCommentChange() {
+  function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity(''); //temos que esvaziar a validação para ela não continuar aparecendo ao digitar algo no input 
     setNewCommentText(event.target.value); //programação declarativa
   }
 
-  function handleNewCommentInvalid() {
+  function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity('Esse campo é obrigatório rapaz...!') //estamos customizando a mensagem de validação!
   }
 
-  function deleteComment(commentToDelete) {
+  function deleteComment(commentToDelete: string) {
     //vamos passar como propriedade para o componente Comment essa função - forma de conectar dois componentes - no componente Comment vamos chamar essa função e passar um parâmetro para ela
     const commentsWithoutDeletedOne = comments.filter((comment) => {
       return comment !== commentToDelete;

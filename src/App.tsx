@@ -1,4 +1,4 @@
-//JSX = JavaScript + XML (HTML) - JSX é um arquivo JS que contém HTML
+ //JSX = JavaScript + XML (HTML) - JSX é um arquivo JS que contém HTML
 import "./global.css"; //importação do css ocorrem nos próprios components react - estilização global da aplicação
 import styles from "./App.module.css";
 import { Header } from "./components/Header";
@@ -72,7 +72,7 @@ export function App() {
               />
             );
           })}
-        </main>
+        </main> 
       </div>
     </div>
   );
