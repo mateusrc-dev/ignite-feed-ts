@@ -19,7 +19,7 @@ interface Content {
 interface PostProps { //vamos definir quais dados e tipos de dados tem dentro do objeto com as propriedades que nosso componente recebe - não podemos definir a tipagem de um dado dentro do objeto, precisamos definir a tipagem do objeto como um todo
   author: Author;
   publishedAt: Date;
-  content: Content[];
+  content: Content[]; //vamos colocar cochetes porque esse dado é um array (um objeto de arrays)
 }
 
 export function Post({ author, publishedAt, content }: PostProps) {
@@ -45,7 +45,7 @@ export function Post({ author, publishedAt, content }: PostProps) {
     setNewCommentText(""); //programação declarativa
   }
 
-  function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
+  function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) { //o que está dentro do sinal de menor e maior é um generics - é usado para especificar de onde o evento veio
     event.target.setCustomValidity(''); //temos que esvaziar a validação para ela não continuar aparecendo ao digitar algo no input 
     setNewCommentText(event.target.value); //programação declarativa
   }

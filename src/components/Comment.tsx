@@ -5,7 +5,7 @@ import styles from "./Comment.module.css";
 
 interface CommentProps {
   content: string;
-  onDeleteComment: (comment: string) => void;
+  onDeleteComment: (comment: string) => void; //o dado dessa propriedade é uma função, - precisamos indicar o que a função retorna (void é vazio) e quais parâmetros ela recebe e que tipo de dado é esse parâmetro
 }
 
 export function Comment({ content, onDeleteComment }: CommentProps) {
