@@ -1,0 +1,81 @@
+.comment {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.commentBox {
+  flex: 1; /*isso faz com que essa div estique o máximo possível do tamanho - é possível usar essa propriedade porque essa div está dentro de outra div com display flex*/
+}
+
+.commentContent {
+  background: var(--gray-700);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.commentContent header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.authorAndTime strong {
+  display: block; /*colocando display block não precisamos usar flex-direction: column no container que envolve 'strong' e 'time'*/
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.authorAndTime time {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--gray-400);
+}
+
+.commentContent header button {
+  background: transparent;
+  border: 0;
+  color: var(--gray-400);
+  cursor: pointer;
+  line-height: 0; /*no focus podemos ver a borda um pouco maior que o button - a altura do button é definida pelo line-height, por isso zeramos ele pra borda ficar do tamanho do button - podemos usar também 'font-size: 0' pra resolver o problema*/
+  border-radius: 2px; /*a borda do focus vai ficar um pouco arredondada*/
+}
+
+.commentContent header button:hover {
+  color: var(--red-500);
+}
+
+.commentContent p {
+  margin-top: 1rem;
+  color: var(--gray-300);
+}
+
+.commentBox footer {
+  margin-top: 1rem;
+}
+
+.commentBox footer button {
+  background: transparent;
+  border: 0;
+  color: var(--gray-400);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+}
+
+.commentBox footer button:hover {
+  color: var(--green-300);
+}
+
+.commentBox footer button svg {
+  /*selecionando a imagem svg dentro de button*/
+  margin-right: 0.5rem;
+}
+
+.commentBox footer span::before {
+  /*criando um elemento dentro do span - vai ser o nosso pontinho*/
+  content: "\2022";
+  padding: 0 0.25rem;
+}

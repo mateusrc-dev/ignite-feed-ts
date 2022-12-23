@@ -1,0 +1,16 @@
+/*esse css vai ser completamente atrelado ao componente Header - por isso a extensão 'module.css'*/
+/*quando trabalhamos com 'css.module' tentamos usar exclusivamente classes*/
+/*o 'css.module' gera automaticamente pra cada classe um hash aleatório para que a classe seja única - isso evita que a classe afete outras partes da aplicação que não seja o componente Header*/
+
+.header {
+  background: var(--gray-800);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem 0; /*1rem equivale a 16px*/
+}
+
+.header img {
+  height: 2rem;
+}

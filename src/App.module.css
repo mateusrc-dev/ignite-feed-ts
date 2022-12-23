@@ -1,0 +1,22 @@
+.wrapper {
+  width: 100%; /*não é obrigatório porque a tag div é display block por padrão e sempre ocupa 100% da largura*/
+  max-width: 70rem; /*essa é a largura do sidebar junto com a parte do feed e o espaçamento entre eles*/
+  margin: 2rem auto;
+  padding: 0 1rem; /*1rem de padding nas laterais para o conteúdo não grudar nos cantos caso a tela for diminuída*/
+  display: grid;
+  grid-template-columns: 256px 1fr; /*1fr significa que a segunda coluna vai ter uma largura flexível*/
+  gap: 2rem; /*1rem é equivalente a 16px*/
+  align-items: flex-start; /*alinhar os elementos no topo - por padrão o valor de align-items é o stretch (os dois elementos um ao lado do outro ficam com a mesma altura, o stretch força que os elementos fiquem com a mesma altura) */
+}
+
+@media (max-width: 768px) {
+  /*quando a tela for menor que 768px vai ser aplicada as configurações css abaixo*/
+  html {
+    /*se for alterado o tamanho da fonte de todo html, como usamos unidade relativa, o tamanho vai se ajustar*/
+    font-size: 87%; /*é 14px em porcentagem - precisamos aqui ajustar com uma unidade relativa*/
+  }
+
+  .wrapper {
+    grid-template-columns: 1fr; /*para ficar com apenas uma coluna que ocupa a largura toda*/
+  }
+}
